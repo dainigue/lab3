@@ -5,13 +5,29 @@ $(document).ready(function() {
 	initializePage();
 })
 
+function projectClick(e){
+	e.preventDefault();
+	var containingProject = $(this).closest(".project");
+    var description = $(containingProject).find(".project-description");
+    if (description.length == 0) {
+       $(containingProject).append("<div class='project-description'><p>Description of the project.</p></div>");
+    } else {
+       description.fadeToggle()
+    }
+}
+
+
 /*
  * Function that is called when the document is ready.
  */
 function initializePage() {
 	$("#testjs").click(function(e) {
-		$('.jumbotron h1').text("Javascript is connected");
+		$('.jumbotron h1').text("Javascript has now initiated!");
+		$("#testjs").text("Please wait...");
+		$(".jumbotron p").toggleClass("active");
 	});
+
+	$(".project").click(projectClick);
 
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
